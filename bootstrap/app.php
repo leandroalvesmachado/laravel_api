@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Essa linha diz ao laravel para aceitar autenticação de sessão baseada em cookies para suas rotas
+        // mas somente para os domínios configurados aqui SANCTUM_STATEFUL_DOMAINS
+        // Com essa linha, fica funcionando dois tipos de autenticação no laravel
+        $middleware->statefulApi();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
